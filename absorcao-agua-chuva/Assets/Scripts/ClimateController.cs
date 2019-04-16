@@ -4,15 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ClimateController : MonoBehaviour{
-    
-    [SerializeField] private GameObject rain;
+
+    [SerializeField] private GameObject[] rains;
     [SerializeField] private Transform river;
     [SerializeField] private Text rainfallIndexText;
     [SerializeField] private Text riverHeightText;
     [SerializeField] private Terrain terrain;
+    private int rainLevel;
     private float minPosition;
     private float maxPosition;
-    private float speed = 2.0f;
+    private float speed = 1.0f;
     private float rainfallIndex = 0.0f;
     private float range = 40.0f;
 
@@ -45,7 +46,25 @@ public class ClimateController : MonoBehaviour{
         terrainUtils.SetTerrainTexture(MenuManager.terrainType);
     }
 
-    public void StartRain() {
+    public void StartRain(int rainIntensity) {
+        rains[rainLevel].SetActive(false);
+        rainLevel = rainIntensity;
+
+        switch(rainLevel) {
+            case 0:
+                speed = 1.0f;
+                rainfallInc = 0.5f;
+                break;
+            case 1:
+                speed = 3.0f;
+                rainfallInc = 1.5f;
+                break;
+            case 2:
+                speed = 5.0f;
+                rainfallInc = 3.0f;
+                break;
+        }
+
         StartCoroutine(MoveRiverUp());
     }
     
@@ -55,11 +74,12 @@ public class ClimateController : MonoBehaviour{
 
     public void StopRain() {
         StopAllCoroutines();
-        rain.SetActive(false);
+        rains[rainLevel].SetActive(false);
     }
 
     private IEnumerator MoveRiverUp () {
-        rain.SetActive(true);
+        if(river.position.y < maxPosition)
+            rains[rainLevel].SetActive(true);
         
         yield return new WaitForSeconds(2f);
         while (river.position.y < maxPosition) {
@@ -71,11 +91,11 @@ public class ClimateController : MonoBehaviour{
 
             yield return null;
         }
-        rain.SetActive(false);
+        rains[rainLevel].SetActive(false);
     }
 
     private IEnumerator MoveRiverDown() {
-        rain.SetActive(false);
+        rains[rainLevel].SetActive(false);
         yield return new WaitForSeconds(.5f);
         while (river.position.y > minPosition) {
             river.position = new Vector3(river.position.x, 
