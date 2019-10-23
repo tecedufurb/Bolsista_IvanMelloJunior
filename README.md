@@ -8,11 +8,13 @@ A jogabilidade consiste em controlar o nível do rio, fazendo com que ele aument
  * Ao selecionar o botão que possui a imagem do sol o nível do rio irá diminuir, simulando um período de seca.
 
 <p align="center">
-  <https://github.com/tecedufurb/pluvia-absorcao-agua/blob/master/screenshots/01.png">
+  <img width="420" src="https://github.com/tecedufurb/pluvia-absorcao-agua/blob/master/screenshots/02.png">
+  <img width="420" src="https://github.com/tecedufurb/pluvia-absorcao-agua/blob/master/screenshots/03.png">
 </p>
+
+Além disso, na tela principal é possível selecionar o tipo de terreno desejado: permeável, semi permeável e impermeável, sendo que o terreno escolhido irá influenciar na absorção da água da chuva e consequentemente no nível final do rio.
 <p align="center">
-  <https://github.com/tecedufurb/pluvia-absorcao-agua/blob/master/screenshots/02.png">
-  <https://github.com/tecedufurb/pluvia-absorcao-agua/blob/master/screenshots/03.png">
+  <img width="420" src="https://github.com/tecedufurb/pluvia-absorcao-agua/blob/master/screenshots/01.png">
 </p>
 
 ## Como baixar
