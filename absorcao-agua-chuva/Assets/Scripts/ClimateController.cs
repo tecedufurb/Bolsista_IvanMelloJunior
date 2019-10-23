@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class ClimateController : MonoBehaviour{
 
-    // [SerializeField] private GameObject[] rains;
     [SerializeField] private GameObject rain;
     [SerializeField] private Transform river;
     [SerializeField] private Text rainfallIndexText;
@@ -14,6 +13,14 @@ public class ClimateController : MonoBehaviour{
     [SerializeField] private Terrain terrain;
 
     [SerializeField] private RainScript rainScript;
+
+    private Color32 inactiveColor = new Color32(130, 130, 130, 255);
+
+    [SerializeField] private GameObject[] rainButtons;
+    [SerializeField] private GameObject[] rainButtonsInactive;
+
+    [SerializeField] private GameObject sunButton;
+    [SerializeField] private GameObject sunButtonInactive;
 
     private int rainLevel;
     private float minPosition;
@@ -52,6 +59,7 @@ public class ClimateController : MonoBehaviour{
     }
 
     public void StartRain(int rainIntensity) {
+        StopAllCoroutines();
         rainLevel = rainIntensity;
 
         switch(rainLevel) {
@@ -76,17 +84,21 @@ public class ClimateController : MonoBehaviour{
     }
     
     public void StartDry() {
+        StopAllCoroutines();
         StartCoroutine(MoveRiverDown());
     }
 
     public void StopRain() {
         StopAllCoroutines();
-        // rain.SetActive(false);
         rainScript.RainIntensity = 0f;
     }
 
     private IEnumerator MoveRiverUp () {
         rain.SetActive(true);
+
+        sunButton.SetActive(true);
+        sunButtonInactive.SetActive(false);
+
         if(river.position.y < maxPosition)
             rain.SetActive(true);
         
@@ -100,12 +112,17 @@ public class ClimateController : MonoBehaviour{
 
             yield return null;
         }
-        // rain.SetActive(false);
         rainScript.RainIntensity = 0f;
+        DisableRainButtons(true);
+        sunButton.SetActive(true);
+        sunButtonInactive.SetActive(false);
     }
 
     private IEnumerator MoveRiverDown() {
         rain.SetActive(false);
+        
+        DisableRainButtons(false);
+
         yield return new WaitForSeconds(.5f);
         while (river.position.y > minPosition) {
             river.position = new Vector3(river.position.x, 
@@ -114,6 +131,16 @@ public class ClimateController : MonoBehaviour{
             UpdateRiverHeightText();
             yield return null;
         }
+        DisableRainButtons(false);
+        sunButton.SetActive(false);
+        sunButtonInactive.SetActive(true);
+    }
+
+    private void DisableRainButtons(bool value) {
+        foreach (GameObject button in rainButtons)
+            button.SetActive(!value);
+        foreach (GameObject inactive in rainButtonsInactive)
+            inactive.SetActive(value);
     }
 
     private void UpdateRiverHeightText() {
