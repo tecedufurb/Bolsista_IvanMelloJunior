@@ -1,6 +1,10 @@
 # Pluvia - Absorção da Água
 :umbrella: Jogo em realidade virtual para demonstrar o impacto da chuva em diferentes terrenos desenvolvido com Unity e SDK do Cardboard.
 
+## Como baixar
+ * [GooglePlay](https://play.google.com/store/apps/details?id=com.tecedu.absorcaoagua&hl=pt_BR)
+ * [APK para Android](https://github.com/tecedufurb/pluvia-absorcao-agua/raw/master/absorcao-agua-chuva/absorcao-agua.apk)
+
 ## Jogabilidade
 A jogabilidade consiste em controlar o nível do rio, fazendo com que ele aumente ou diminua. Para isso existem quatro botões flutuantes acima da tela. Para selecionar um dos botões basta movimentar a cabeça de forma a posicionar o ponto branco no centro da tela acima do botão que deseja selecionar.
  
@@ -16,7 +20,3 @@ Além disso, na tela principal é possível selecionar o tipo de terreno desejad
 <p align="center">
   <img width="420" src="https://github.com/tecedufurb/pluvia-absorcao-agua/blob/master/screenshots/01.png">
 </p>
-
-## Como baixar
- * [GooglePlay](https://play.google.com/store/apps/details?id=com.tecedu.absorcaoagua&hl=pt_BR)
- * [APK para Android](https://github.com/tecedufurb/pluvia-absorcao-agua/raw/master/absorcao-agua-chuva/absorcao-agua.apk)
