@@ -20,6 +20,6 @@ public class MenuManager : MonoBehaviour {
 
     public void SelectTerrainType(int type) {
         terrainType = (TerrainType)type;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("main");
     }
 }
